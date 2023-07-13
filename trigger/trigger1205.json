@@ -1,0 +1,25 @@
+{
+	"name": "trigger1205",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-05-14T08:49:00",
+				"timeZone": "GMT Standard Time",
+				"schedule": {
+					"minutes": [
+						5
+					],
+					"hours": [
+						12
+					]
+				}
+			}
+		}
+	}
+}

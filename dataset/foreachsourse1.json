@@ -1,0 +1,39 @@
+{
+	"name": "foreachsourse1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakeayangen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"outfile": {
+				"type": "string"
+			},
+			"outputfoldername": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().outfile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().outputfoldername",
+					"type": "Expression"
+				},
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "cloud2345",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7dd6718b-c70d-4904-a481-a390896457aa",
+		"tenantId": "800008c1-2854-4c49-97d3-5ab9c14938d8"
+	}
+}

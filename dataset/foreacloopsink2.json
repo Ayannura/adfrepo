@@ -1,0 +1,39 @@
+{
+	"name": "foreacloopsink2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakeayangen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"outputfile": {
+				"type": "string"
+			},
+			"outputfoler": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().outputfile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().outputfoler",
+					"type": "Expression"
+				},
+				"fileSystem": "output12"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

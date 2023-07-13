@@ -1,0 +1,200 @@
+{
+	"name": "foreachloopsqltodatalake2",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('metadata')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "foreachsours3",
+									"type": "DatasetReference",
+									"parameters": {
+										"inputfile": {
+											"value": "@item().Inputfile",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "foreachsink3",
+									"type": "DatasetReference",
+									"parameters": {
+										"outputfolder": {
+											"value": "@item().foldername",
+											"type": "Expression"
+										},
+										"outputfile": {
+											"value": "@item().outputfile",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy data1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "foreachsourse3",
+									"type": "DatasetReference",
+									"parameters": {
+										"outputfolder": {
+											"value": "@item().foldername",
+											"type": "Expression"
+										},
+										"outputfile": {
+											"value": "@item().Outputfile",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "foreachloopsink3",
+									"type": "DatasetReference",
+									"parameters": {
+										"sqltablename": {
+											"value": "@item().Outputschema",
+											"type": "Expression"
+										},
+										"sqlsfileschema": {
+											"value": "@item().Outputtable",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"metadata": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"Inputfile": "Department.csv",
+						"foldername": "folder1",
+						"Outputfile": "Departmentout.csv",
+						"Outputschema": "dbo",
+						"Outputtable": "Departmentout"
+					},
+					{
+						"Inputfile": "Employee.csv",
+						"foldername": "folder2",
+						"Outputfile": "Employeeout.csv",
+						"Outputschema": "dbo",
+						"Outputtable": "Employeeout"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-12T16:32:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
