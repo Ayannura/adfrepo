@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "cloud2345"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"abhisheksqlcloud_connectionString": {
+			"value": ""
+		},
+		"cloud22_connectionString": {
+			"value": ""
+		},
+		"datalakeayangen2_accountKey": {
+			"value": ""
+		},
+		"datalakeayangen2345_accountKey": {
+			"value": ""
+		},
+		"datastorage1223_connectionString": {
+			"value": ""
+		},
+		"file678blob_connectionString": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://keyvault21.vault.azure.net/"
+		},
+		"datalakeayangen2_properties_typeProperties_url": {
+			"value": "https://datalakeayangen2.dfs.core.windows.net/"
+		},
+		"datalakeayangen2345_properties_typeProperties_url": {
+			"value": "https://datalakeayangen2345.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
