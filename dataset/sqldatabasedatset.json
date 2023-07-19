@@ -1,0 +1,32 @@
+{
+	"name": "sqldatabasedatset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_cloud22",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sqltablename": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"sqlschema": {
+				"type": "string",
+				"defaultValue": "metadatamonitoring"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().sqlschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().sqltablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
