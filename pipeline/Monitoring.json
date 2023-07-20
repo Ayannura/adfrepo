@@ -15,6 +15,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -64,13 +68,33 @@
 							"inputs": [
 								{
 									"referenceName": "DataLakeDataset",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"containername": {
+											"value": "@item().inputcontainername",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().inputfilename",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "Datalakesink",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"foldername": {
+											"value": "@item().outputcontainername",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().outputfilename",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
