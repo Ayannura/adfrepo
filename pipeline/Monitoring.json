@@ -139,10 +139,12 @@
 		],
 		"parameters": {
 			"sqlschema": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dbo"
 			},
 			"sqltabelschema": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "metadatamonitoring"
 			}
 		},
 		"annotations": []
