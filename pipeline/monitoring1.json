@@ -131,6 +131,48 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy data1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureParameters": {
+									"tablename": {
+										"value": {
+											"value": "@item().outputfilename",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"status": {
+										"value": {
+											"value": "@activity('Copy data1').status",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "cloud22",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
