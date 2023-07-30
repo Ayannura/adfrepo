@@ -33,7 +33,8 @@
 								"type": "Expression"
 							}
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -105,11 +106,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"containername": {
-											"value": "@item().outputcontainername",
+											"value": "@item().Inputcontainername",
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@item().outputfilename",
+											"value": "@item().Inputfilename",
 											"type": "Expression"
 										}
 									}
@@ -121,11 +122,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"foldername": {
-											"value": "@item().inputcontainname",
+											"value": "@item().outputcontainername",
 											"type": "Expression"
 										},
 										"filename": {
-											"value": "@item().inputfilename",
+											"value": "@item().outputfilename",
 											"type": "Expression"
 										}
 									}
@@ -139,7 +140,7 @@
 								{
 									"activity": "Copy data1",
 									"dependencyConditions": [
-										"Succeeded"
+										"Completed"
 									]
 								}
 							],
@@ -152,17 +153,18 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"storedProcedureName": "[dbo].[monitoring1]",
 								"storedProcedureParameters": {
 									"tablename": {
 										"value": {
-											"value": "@item().outputfilename",
+											"value": "@item().inputfilename",
 											"type": "Expression"
 										},
 										"type": "String"
 									},
 									"status": {
 										"value": {
-											"value": "@activity('Copy data1').status",
+											"value": "@activity('Copy data1').Status",
 											"type": "Expression"
 										},
 										"type": "String"
