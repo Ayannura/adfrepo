@@ -1,0 +1,30 @@
+{
+	"name": "sqldatabadeset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cloud22",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sqltablename": {
+				"type": "string"
+			},
+			"sqlschema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().sqlschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().sqltablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
