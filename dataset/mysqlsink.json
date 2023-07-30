@@ -1,0 +1,16 @@
+{
+	"name": "mysqlsink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cloud22",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employee"
+		}
+	}
+}
