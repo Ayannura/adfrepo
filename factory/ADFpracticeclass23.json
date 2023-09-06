@@ -1,0 +1,9 @@
+{
+	"name": "ADFpracticeclass23",
+	"location": "ukwest",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0cdf89c9-2d59-4ae4-a112-0a6c40a99979",
+		"tenantId": "800008c1-2854-4c49-97d3-5ab9c14938d8"
+	}
+}
